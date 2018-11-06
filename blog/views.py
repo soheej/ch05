@@ -14,7 +14,7 @@ class PostLV(ListView) :
     # 컨텍스트 객체 이름을 기본값(object_list)와 다르게 지정했지만,
     # 기본값(object_list)도 여전히 사용 가능함
     context_object_name = 'posts'
-    paginate_by = 2  # 페이지 당 2 개 객체를 처리하도록 지정
+    paginate_by = 5  # 페이지 당 5 개 객체를 처리하도록 지정
 
 # DetailView를 상속받아서 PostDV 작성
 # 기본키 대신 slug를 전달 받고, 나머지 속성은 기본값 사용
