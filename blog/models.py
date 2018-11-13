@@ -2,9 +2,11 @@
 from __future__ import unicode_literals
 from django.utils.encoding import python_2_unicode_compatible
 
+
 from django.db import models
 # url 패턴을 만들어주는 장고 내장 함수 reverse()를 위한 임포트
 from django.core.urlresolvers import reverse
+from tagging.fields import TagField                 # ch07 추가
 
 # Create your models here.
 
@@ -14,7 +16,7 @@ class Post(models.Model):
     # 한 줄로 입력되는 CharField
     title = models.CharField('제목', max_length=50)
     slug = models.SlugField('슬러그',  # 기본 길이 50, 인덱스가 기본 생성됨,
-                                       # 제목에서 주요 단어를 하으픈으로 연결하여 생성
+                            # 제목에서 주요 단어를 하으픈으로 연결하여 생성
                             unique=True,  # unique 설정, 기본키 대용으로 사용 가능
                             allow_unicode=True,  # 한글 입력 가능하도록
                             help_text='제목에 대한 한 단어의 별명.')
@@ -27,6 +29,8 @@ class Post(models.Model):
                                        auto_now_add=True)  # 최초 생성 일시를 자동 저장하도록
     modify_date = models.DateTimeField('최종 수정 일시',
                                        auto_now=True)  # 최종 수정 일시를 자동 저장하도록
+    tag = TagField('태그',  # ch07 추가
+                   help_text='게시글에 대한 태그')  # ch07 추가
 
     class Meta:  # 필드 속성 외에 필요한 파라미터를 Meta 내부 클래스로 정의
         verbose_name = '기사'              # 'post'
